@@ -267,7 +267,9 @@ th{
   padding:16px;
   border-radius:2px;
 }
-.ra-title{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:14.5px;margin-bottom:2px;}
+.ra-title{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:14.5px;margin-bottom:2px;display:block;}
+a.ra-title{color:var(--index-blue);text-decoration:none;}
+a.ra-title:hover{text-decoration:underline;}
 .ra-author{font-size:12.5px;color:var(--stone);margin-bottom:10px;}
 .ra-hook{font-size:13px;margin:0;}
 
