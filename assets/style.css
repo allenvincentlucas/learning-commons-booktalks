@@ -449,6 +449,74 @@ a.ra-title:hover{text-decoration:underline;}
 }
 .shelf-tile.slot-empty:hover{border-color:var(--rule);}
 
+/* homepage: Fiction / Non-Fiction category sections */
+.shelf-section{margin-top:40px;}
+.shelf-section:first-of-type{margin-top:0;}
+.shelf-section-head{
+  display:flex;
+  align-items:baseline;
+  justify-content:space-between;
+  gap:12px;
+  flex-wrap:wrap;
+  margin-bottom:16px;
+  padding-bottom:8px;
+  border-bottom:1px solid var(--rule);
+}
+.shelf-section-title{
+  font-family:'Space Grotesk',sans-serif;
+  font-weight:600;
+  font-size:17px;
+  margin:0;
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+.shelf-section-title::before{
+  content:"";
+  width:8px;height:8px;
+  border-radius:50%;
+  background:var(--index-blue);
+  display:inline-block;
+}
+.shelf-section-count{
+  font-family:'JetBrains Mono',monospace;
+  font-size:11px;
+  color:var(--stone);
+  text-transform:uppercase;
+  letter-spacing:0.06em;
+  white-space:nowrap;
+}
+
+/* fiction booktalk pages: series box (omitted entirely for standalone/non-series fiction and all non-fiction) */
+.series-box{
+  border:1px solid var(--rule);
+  padding:20px 22px;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+.series-box .series-name{
+  font-family:'Space Grotesk',sans-serif;
+  font-weight:600;
+  font-size:15.5px;
+}
+.series-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:7px;}
+.series-list li{
+  font-size:14px;
+  display:flex;
+  align-items:baseline;
+  gap:9px;
+}
+.series-list .series-num{
+  font-family:'JetBrains Mono',monospace;
+  font-size:11px;
+  color:var(--stone);
+  min-width:16px;
+}
+.series-list .series-current{color:var(--stone);font-style:italic;}
+.series-list a{color:var(--index-blue);text-decoration:none;}
+.series-list a:hover{text-decoration:underline;}
+
 @media (max-width:640px){
   .wrap{padding:0 16px 70px;}
   h1{font-size:28px;max-width:100%;}
