@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Are We Barking Up the Wrong Tree? | The Librarian's Desk</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FAF9F6;
+    --paper-card:#FFFFFF;
+    --ink:#191B1F;
+    --index-blue:#2A4B8D;
+    --stone:#84806F;
+    --stone-light:#E4E1D6;
+    --rule:#D8D4C6;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:760px;margin:0 auto;padding:0 24px 100px;}
+
+  /* nameplate */
+  .nameplate{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:32px 0 20px;
+    border-bottom:2px solid var(--ink);
+  }
+  .nameplate .site{
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:600;
+    font-size:15px;
+    letter-spacing:0.02em;
+  }
+  .nameplate .cat{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    color:var(--stone);
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+  }
+
+  /* catalog card hero */
+  .card{
+    background:var(--paper-card);
+    border:1px solid var(--rule);
+    border-radius:2px;
+    margin-top:36px;
+    padding:38px 40px 34px;
+    position:relative;
+    background-image:repeating-linear-gradient(var(--paper-card), var(--paper-card) 27px, var(--rule) 28px);
+  }
+  .card::before, .card::after{
+    content:"";
+    position:absolute;
+    top:14px;
+    width:10px;height:10px;
+    border-radius:50%;
+    background:var(--paper);
+    border:1px solid var(--rule);
+  }
+  .card::before{left:22px;}
+  .card::after{left:42px;}
+
+  .call-number{
+    position:absolute;
+    top:34px;right:40px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+    color:var(--stone);
+    text-align:right;
+    line-height:1.5;
+  }
+  .stamp{
+    position:absolute;
+    top:100px;right:36px;
+    border:2px solid var(--index-blue);
+    color:var(--index-blue);
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    font-weight:500;
+    letter-spacing:0.12em;
+    padding:5px 10px;
+    transform:rotate(6deg);
+    border-radius:3px;
+    opacity:0.85;
+  }
+  .eyebrow{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+    color:var(--index-blue);
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    margin:26px 0 10px;
+  }
+  h1{
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:600;
+    font-size:38px;
+    line-height:1.15;
+    margin:0 0 8px;
+    max-width:80%;
+  }
+  .byline{
+    font-size:15px;
+    color:var(--stone);
+    margin-bottom:26px;
+  }
+  .byline strong{color:var(--ink);font-weight:500;}
+  blockquote{
+    margin:0;
+    padding-left:18px;
+    border-left:3px solid var(--index-blue);
+    font-style:italic;
+    font-size:16px;
+    color:#3a3c42;
+  }
+  blockquote cite{
+    display:block;
+    margin-top:8px;
+    font-style:normal;
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+    color:var(--stone);
+  }
+
+  /* meta strip */
+  .meta-strip{
+    display:flex;
+    flex-wrap:wrap;
+    gap:0;
+    margin-top:0;
+    border:1px solid var(--rule);
+    border-top:none;
+  }
+  .meta-item{
+    flex:1 1 140px;
+    padding:14px 16px;
+    border-right:1px solid var(--rule);
+  }
+  .meta-item:last-child{border-right:none;}
+  .meta-label{
+    font-family:'JetBrains Mono',monospace;
+    font-size:10px;
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    color:var(--stone);
+    margin-bottom:4px;
+  }
+  .meta-value{font-size:13.5px;font-weight:500;}
+
+  /* sections */
+  section{margin-top:56px;}
+  h2{
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:600;
+    font-size:22px;
+    margin:0 0 18px;
+    display:flex;
+    align-items:baseline;
+    gap:10px;
+  }
+  h2 .num{
+    font-family:'JetBrains Mono',monospace;
+    font-size:13px;
+    color:var(--stone);
+    font-weight:400;
+  }
+  p{font-size:15.5px;margin:0 0 16px;}
+
+  /* themes as subject-heading tabs */
+  .theme{
+    display:grid;
+    grid-template-columns:150px 1fr;
+    gap:18px;
+    padding:16px 0;
+    border-top:1px solid var(--rule);
+  }
+  .theme:last-child{border-bottom:1px solid var(--rule);}
+  .theme-tag{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    color:var(--index-blue);
+    text-transform:uppercase;
+    letter-spacing:0.05em;
+    line-height:1.5;
+    padding-top:2px;
+  }
+  .theme-body p{margin:0;font-size:15px;}
+  .theme-body strong{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:15.5px;display:block;margin-bottom:4px;}
+
+  /* videos */
+  .video-block{margin-bottom:34px;}
+  .video-frame{
+    position:relative;
+    width:100%;
+    padding-bottom:56.25%;
+    background:var(--ink);
+    border-radius:2px;
+    overflow:hidden;
+    margin-bottom:10px;
+  }
+  .video-frame iframe{
+    position:absolute;top:0;left:0;width:100%;height:100%;border:none;
+  }
+  .video-caption{
+    display:flex;
+    gap:12px;
+    align-items:flex-start;
+  }
+  .video-caption .tag{
+    flex:none;
+    font-family:'JetBrains Mono',monospace;
+    font-size:10px;
+    color:var(--index-blue);
+    border:1px solid var(--index-blue);
+    padding:3px 7px;
+    border-radius:2px;
+    margin-top:2px;
+    white-space:nowrap;
+  }
+  .video-caption p{margin:0;font-size:14px;color:#3a3c42;}
+  .video-caption p strong{color:var(--ink);}
+
+  /* TOK table */
+  table{width:100%;border-collapse:collapse;font-size:14.5px;}
+  th,td{text-align:left;padding:12px 14px;border:1px solid var(--rule);vertical-align:top;}
+  th{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:0.05em;
+    color:var(--stone);
+    background:var(--stone-light);
+    font-weight:500;
+  }
+
+  /* discuss */
+  .discuss-list{list-style:none;margin:0;padding:0;counter-reset:d;}
+  .discuss-list li{
+    counter-increment:d;
+    display:grid;
+    grid-template-columns:32px 1fr;
+    gap:14px;
+    padding:14px 0;
+    border-top:1px solid var(--rule);
+    font-size:15px;
+  }
+  .discuss-list li:last-child{border-bottom:1px solid var(--rule);}
+  .discuss-list li::before{
+    content:counter(d);
+    font-family:'JetBrains Mono',monospace;
+    color:var(--index-blue);
+    font-size:13px;
+  }
+
+  /* read-alikes */
+  .readalikes{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+  .ra-card{
+    border:1px solid var(--rule);
+    padding:16px;
+    border-radius:2px;
+  }
+  .ra-title{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:14.5px;margin-bottom:2px;}
+  .ra-author{font-size:12.5px;color:var(--stone);margin-bottom:10px;}
+  .ra-hook{font-size:13px;margin:0;}
+
+  /* author bio */
+  .author-box{
+    display:grid;
+    grid-template-columns:56px 1fr;
+    gap:16px;
+    border:1px solid var(--rule);
+    padding:20px;
+    align-items:start;
+  }
+  .author-avatar{
+    width:56px;height:56px;
+    border-radius:50%;
+    background:var(--index-blue);
+    color:#fff;
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:600;
+    font-size:18px;
+  }
+  .author-box h3{margin:0 0 6px;font-family:'Space Grotesk',sans-serif;font-size:15.5px;}
+  .author-box p{font-size:14px;margin:0;color:#3a3c42;}
+
+  /* footer CTA */
+  .cta{
+    margin-top:60px;
+    border:2px solid var(--ink);
+    padding:28px 30px;
+    text-align:center;
+    position:relative;
+  }
+  .cta .stamp2{
+    display:inline-block;
+    border:2px solid var(--index-blue);
+    color:var(--index-blue);
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    letter-spacing:0.1em;
+    padding:5px 12px;
+    border-radius:3px;
+    transform:rotate(-3deg);
+    margin-bottom:14px;
+  }
+  .cta h3{
+    font-family:'Space Grotesk',sans-serif;
+    font-size:20px;
+    margin:0 0 8px;
+  }
+  .cta p{font-size:14px;color:var(--stone);margin:0;}
+
+  footer.site-footer{
+    margin-top:50px;
+    padding-top:20px;
+    border-top:1px solid var(--rule);
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    color:var(--stone);
+    text-align:center;
+  }
+
+  @media (max-width:640px){
+    .wrap{padding:0 16px 70px;}
+    h1{font-size:28px;max-width:100%;}
+    .call-number{position:static;margin:14px 0 0;text-align:left;}
+    .stamp{position:static;display:inline-block;margin-top:12px;transform:rotate(-2deg);}
+    .theme{grid-template-columns:1fr;}
+    .readalikes{grid-template-columns:1fr;}
+    .author-box{grid-template-columns:44px 1fr;}
+    .meta-item{flex:1 1 45%;border-bottom:1px solid var(--rule);}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="nameplate">
+    <div class="site">IB Learning Commons</div>
+    <div class="cat">BookTalk Series</div>
+  </div>
+
+  <div class="card">
+    <div class="call-number">158.1<br>BAR</div>
+    <div class="eyebrow">The Librarian's Desk</div>
+    <h1>Are we barking up the wrong tree?</h1>
+    <div class="byline">A BookTalk on <strong>Barking Up the Wrong Tree</strong> by Eric Barker</div>
+    <div class="stamp">NEW ON THE SHELF</div>
+    <blockquote>
+      "We spend too much time trying to be 'good' when good is often merely average. To be great, we must be different. More often, being the best means just being the best version of you."
+      <cite>— Eric Barker, Barking Up the Wrong Tree</cite>
+    </blockquote>
+  </div>
+
+  <div class="meta-strip">
+    <div class="meta-item"><div class="meta-label">Genre</div><div class="meta-value">Nonfiction · Psychology</div></div>
+    <div class="meta-item"><div class="meta-label">Grade band</div><div class="meta-value">MYP 4–5 · DP</div></div>
+    <div class="meta-item"><div class="meta-label">Format</div><div class="meta-value">Paperback · 256 pp</div></div>
+    <div class="meta-item"><div class="meta-label">ISBN</div><div class="meta-value">978-0-06-241605-6</div></div>
+  </div>
+
+  <section>
+    <h2><span class="num">01</span> The inquiry: what actually drives success?</h2>
+    <p>As IB students, teachers, and lifelong learners, we spend a massive amount of time talking about <strong>success</strong>. We talk about optimal study habits, time management, leadership, grit, and building a well-rounded portfolio.</p>
+    <p>But have you ever paused to ask yourself: <strong>where did these rules come from, and are they actually true?</strong></p>
+    <p>In his <em>Wall Street Journal</em> bestseller, <em>Barking Up the Wrong Tree: The Surprising Science Behind Why Everything You Know About Success Is (Mostly) Wrong</em>, author Eric Barker takes a scientific lens to the maxims we take for granted. Drawing on evidence-based research, sociology, historical anecdotes, and a healthy dose of humor, Barker puts standard self-help clichés on trial.</p>
+    <p>If you've ever felt like you're playing strictly by the rules but not getting the results you expected, this book is designed to make you re-evaluate the whole playing field.</p>
+  </section>
+
+  <section>
+    <h2><span class="num">02</span> Key themes for the curious mind</h2>
+    <p style="color:var(--stone);font-size:13.5px;margin-bottom:20px;">No spoilers — just the dilemmas Barker puts on trial.</p>
+
+    <div class="theme">
+      <div class="theme-tag">Achievement</div>
+      <div class="theme-body">
+        <strong>Filtered vs. unfiltered trajectories</strong>
+        <p>Why do high school valedictorians rarely go on to change the world in earth-shattering ways, while famous dropouts and eccentrics often disrupt whole industries? What does our education system actually measure?</p>
+      </div>
+    </div>
+
+    <div class="theme">
+      <div class="theme-tag">Cooperation</div>
+      <div class="theme-body">
+        <strong>The "jerk" conundrum</strong>
+        <p>Does being nice mean finishing last, or do cooperative strategies win in the long run? Barker evaluates tactics ranging from corporate boardrooms to surprising historical subcultures.</p>
+      </div>
+    </div>
+
+    <div class="theme">
+      <div class="theme-tag">Persistence</div>
+      <div class="theme-body">
+        <strong>The strategic role of quitting</strong>
+        <p>We are constantly told that "quitters never win." But is blind grit always smart, or is knowing when to pivot a core component of mastery?</p>
+      </div>
+    </div>
+
+    <div class="theme">
+      <div class="theme-tag">Personality</div>
+      <div class="theme-body">
+        <strong>Introverts, extroverts, and networks</strong>
+        <p>Extroverts might excel in immediate social settings, but introverts often cultivate extraordinary expertise. How do different personality structures navigate connection without feeling transactional?</p>
+      </div>
+    </div>
+
+    <p style="margin-top:20px;">Rather than handing down simple, one-size-fits-all answers, Barker demonstrates that <strong>context is everything</strong>. A trait that is a liability in one environment might be a superpower in another.</p>
+  </section>
+
+  <section>
+    <h2><span class="num">03</span> Deepen your understanding</h2>
+    <p>Three complementary videos — an animated overview, the full author talk, and one bonus concept — for previewing the book before you check it out.</p>
+
+    <div class="video-block">
+      <div class="video-frame">
+        <iframe src="https://www.youtube-nocookie.com/embed/HMZhySbJxvM" title="Barking Up the Wrong Tree — Core Message" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <div class="video-caption">
+        <div class="tag">Start here</div>
+        <p><strong>Core Message — animated summary.</strong> A ten-minute, whiteboard-style walkthrough of the book's central argument. The fastest way for a student to decide if this book is for them before committing to all 256 pages.</p>
+      </div>
+    </div>
+
+    <div class="video-block">
+      <div class="video-frame">
+        <iframe src="https://www.youtube-nocookie.com/embed/l5mCrxjvI2A" title="Eric Barker — Talks at Google" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <div class="video-caption">
+        <div class="tag">Go deeper</div>
+        <p><strong>Talks at Google — the full author talk.</strong> Barker presents the research in his own words and fields audience questions, making this the best pairing for TOK students who want to probe his methodology, not just his conclusions.</p>
+      </div>
+    </div>
+
+    <div class="video-block">
+      <div class="video-frame">
+        <iframe src="https://www.youtube-nocookie.com/embed/Br-eMhS3U8A" title="Barking Up the Wrong Tree — Bonus Insight" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <div class="video-caption">
+        <div class="tag">One more idea</div>
+        <p><strong>Bonus insight.</strong> A short follow-up animation on a single idea from the book that didn't make the core summary — a good five-minute watch for a student who's already finished the book and wants one more angle.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="num">04</span> Theory of Knowledge connection</h2>
+    <table>
+      <tr><th>TOK lens</th><th>Inquiry connection</th></tr>
+      <tr><td>Scope and context</td><td>How do cultural narratives shape what a society defines as "success"?</td></tr>
+      <tr><td>Methods and tools</td><td>How reliable is empirical psychological research when applied to individual human behavior?</td></tr>
+      <tr><td>Perspectives</td><td>Can counterintuitive data outweigh long-standing cultural maxims?</td></tr>
+    </table>
+  </section>
+
+  <section>
+    <h2><span class="num">05</span> Reflect and discuss</h2>
+    <p style="color:var(--stone);font-size:13.5px;margin-bottom:0;">A few prompts for a CAS reflection, an advisory circle, or a TOK exhibition proposal.</p>
+    <ul class="discuss-list">
+      <li>Think of a "rule" for success you were taught early on. Has Barker's research changed how much you trust it?</li>
+      <li>Barker argues that context determines whether a trait is a strength or a weakness. Name a trait of yours and describe two contexts where it would land differently.</li>
+      <li>If you had to defend one piece of conventional success advice against Barker's evidence, which would you choose, and why?</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2><span class="num">06</span> If this book grabbed you, try</h2>
+    <div class="readalikes">
+      <div class="ra-card">
+        <div class="ra-title">Grit</div>
+        <div class="ra-author">Angela Duckworth</div>
+        <p class="ra-hook">A deeper dive into the "strategic quitting" thread — what perseverance actually looks like when it works.</p>
+      </div>
+      <div class="ra-card">
+        <div class="ra-title">Quiet</div>
+        <div class="ra-author">Susan Cain</div>
+        <p class="ra-hook">Picks up the introvert/extrovert theme and runs with it for a full book.</p>
+      </div>
+      <div class="ra-card">
+        <div class="ra-title">Range</div>
+        <div class="ra-author">David Epstein</div>
+        <p class="ra-hook">Challenges the "specialize early" narrative the same way Barker challenges the valedictorian myth.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="num">07</span> About the author</h2>
+    <div class="author-box">
+      <div class="author-avatar">EB</div>
+      <div>
+        <h3>Eric Barker</h3>
+        <p>Eric Barker writes the blog Barking Up the Wrong Tree, which distills behavioral science into practical advice on living and working well. A former Hollywood screenwriter with a degree from the University of Pennsylvania and graduate degrees from Boston College and UCLA, he has spoken at MIT, Yale, and Google. This is his first book.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="cta">
+    <div class="stamp2">CHECK IT OUT</div>
+    <h3>Available now in the Learning Commons non-fiction collection</h3>
+    <p>Find it on the shelf at 158.1 BAR — or ask us to place a hold. Come by and let us know what you think.</p>
+  </div>
+
+  <footer class="site-footer">THE LIBRARIAN'S DESK &middot; IB CORE &amp; INQUIRY &middot; BOOKTALK SERIES</footer>
+
+</div>
+</body>
+</html>
