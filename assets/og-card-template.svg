@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#FAF9F6"/>
+
+  <rect x="56" y="56" width="1088" height="518" fill="#FFFFFF" stroke="#191B1F" stroke-width="4"/>
+
+  <circle cx="100" cy="100" r="7" fill="#FAF9F6" stroke="#D8D4C6" stroke-width="2"/>
+  <circle cx="128" cy="100" r="7" fill="#FAF9F6" stroke="#D8D4C6" stroke-width="2"/>
+
+  <text x="1096" y="112" text-anchor="end" font-family="JetBrains Mono" font-size="22" fill="#84806F">__CALL_NUMBER_LINE1__</text>
+  <text x="1096" y="140" text-anchor="end" font-family="JetBrains Mono" font-size="22" fill="#84806F">__CALL_NUMBER_LINE2__</text>
+
+  <text x="100" y="180" font-family="JetBrains Mono" font-size="20" letter-spacing="3" fill="#2A4B8D">THE LIBRARIAN'S DESK &#8226; BOOKTALK</text>
+
+  <text x="100" y="270" font-family="Space Grotesk" font-weight="600" font-size="56" fill="#191B1F">__TITLE_LINE1__</text>
+  <text x="100" y="336" font-family="Space Grotesk" font-weight="600" font-size="56" fill="#191B1F">__TITLE_LINE2__</text>
+
+  <text x="100" y="392" font-family="Inter" font-size="26" fill="#84806F">by __AUTHOR__</text>
+
+  <line x1="100" y1="440" x2="1096" y2="440" stroke="#D8D4C6" stroke-width="2"/>
+
+  <text x="100" y="490" font-family="Inter" font-style="italic" font-size="24" fill="#3A3C42">__HOOK_LINE1__</text>
+  <text x="100" y="524" font-family="Inter" font-style="italic" font-size="24" fill="#3A3C42">__HOOK_LINE2__</text>
+
+  <rect x="944" y="470" width="152" height="46" rx="3" fill="none" stroke="#2A4B8D" stroke-width="3" transform="rotate(-4 1020 493)"/>
+  <text x="1020" y="500" text-anchor="middle" font-family="JetBrains Mono" font-weight="500" font-size="20" letter-spacing="2" fill="#2A4B8D" transform="rotate(-4 1020 493)">CHECK IT OUT</text>
+
+  <text x="100" y="548" font-family="JetBrains Mono" font-size="18" letter-spacing="1" fill="#84806F">IB LEARNING COMMONS</text>
+</svg>
