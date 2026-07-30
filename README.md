@@ -17,6 +17,21 @@ A small, shelf-style website for IB Learning Commons BookTalks. Each post is a o
 /[book-slug]/preview.png             → that booktalk's social preview card (1200x630)
 ```
 
+## Homepage layout
+
+The shelf is split into two category sections, in this order: **Fiction**, then **Non-Fiction**. Each section is its own `.shelf-section` block with a heading, a live count, and its own `.shelf-grid` of tiles — plus a dashed "next booktalk coming soon" placeholder tile at the end of *that* category's grid (not one shared placeholder for the whole site). The overall `.shelf-count` line at the top of the page shows the total plus the fiction/non-fiction split, e.g. "3 booktalks · 1 fiction · 2 non-fiction." When a new booktalk is added, its tile goes into the matching category section, and both the section count and the top-level count get updated.
+
+## Fiction series section
+
+Every **fiction** booktalk page that belongs to a series or duology gets an extra numbered section — the next number after "About the author" (currently `08`) — titled **Series**, using the `.series-box` / `.series-list` styles. It lists every book in the series in reading order:
+- The current book is marked in place (styled with `.series-current`, not linked).
+- Any other book in the series that **already has its own booktalk on this site** is an automatic link to `../[that-book-slug]/`.
+- Any book in the series that doesn't have a page yet is plain text.
+
+Standalone fiction (not part of a series) and all non-fiction titles simply omit this section — it isn't shown as "N/A" or left as an empty placeholder.
+
+Because this links in both directions, adding a new booktalk for a book that's a sequel/prequel to an *existing* booktalk means going back and editing that earlier page's `.series-list` to turn its now-published sibling from plain text into a link, in addition to adding the section on the new page.
+
 ## Adding a new booktalk
 
 1. Create a new folder named after the book, e.g. `grit/`
@@ -24,6 +39,7 @@ A small, shelf-style website for IB Learning Commons BookTalks. Each post is a o
    - link to the shared stylesheet with `../assets/style.css`
    - nameplate links back to `../index.html`
    - include the favicon links and Open Graph / Twitter meta tags (copy the block from an existing post and update title, description, and image URL)
+   - **if fiction and part of a series**, add the `08 Series` section (see above); check existing folders for any sibling title to auto-link
 3. Generate that book's preview card:
    ```
    cd assets
@@ -35,8 +51,10 @@ A small, shelf-style website for IB Learning Commons BookTalks. Each post is a o
      --out ../grit/preview.png
    ```
    (Requires `cairosvg` and the Space Grotesk / Inter / JetBrains Mono font files installed locally — see script docstring.)
-4. Add a new `.shelf-tile` card to `index.html` linking to `[book-slug]/`, and remove or push down the "next booktalk coming soon" placeholder tile
-5. Commit — GitHub Pages picks up the new folder automatically, no rebuild step needed
+4. Add a new `.shelf-tile` card to `index.html`, inside the matching Fiction or Non-Fiction `.shelf-section`, linking to `[book-slug]/`; remove or push down that category's "next booktalk coming soon" placeholder tile
+5. Update both the top-level `.shelf-count` and the affected `.shelf-section-count`
+6. If the new book is a sibling (prequel/sequel) of an existing booktalk, edit that existing page's `.series-list` to link to the new one
+7. Commit — GitHub Pages picks up the new folder automatically, no rebuild step needed
 
 ## Social sharing
 
