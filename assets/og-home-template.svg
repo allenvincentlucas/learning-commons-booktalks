@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#FAF9F6"/>
+
+  <rect x="56" y="56" width="1088" height="518" fill="#FFFFFF" stroke="#191B1F" stroke-width="4"/>
+
+  <circle cx="100" cy="100" r="7" fill="#FAF9F6" stroke="#D8D4C6" stroke-width="2"/>
+  <circle cx="128" cy="100" r="7" fill="#FAF9F6" stroke="#D8D4C6" stroke-width="2"/>
+
+  <text x="100" y="180" font-family="JetBrains Mono" font-size="20" letter-spacing="3" fill="#2A4B8D">IB LEARNING COMMONS</text>
+
+  <text x="100" y="270" font-family="Space Grotesk" font-weight="600" font-size="64" fill="#191B1F">The Librarian's Desk</text>
+
+  <text x="100" y="330" font-family="Inter" font-size="28" fill="#84806F">BookTalks worth checking out</text>
+
+  <line x1="100" y1="380" x2="1096" y2="380" stroke="#D8D4C6" stroke-width="2"/>
+
+  <text x="100" y="428" font-family="Inter" font-style="italic" font-size="24" fill="#3A3C42">Short, TOK-connected reads on the books worth</text>
+  <text x="100" y="462" font-family="Inter" font-style="italic" font-size="24" fill="#3A3C42">checking out of the Learning Commons.</text>
+
+  <rect x="100" y="500" width="220" height="46" rx="3" fill="none" stroke="#2A4B8D" stroke-width="3" transform="rotate(-3 210 523)"/>
+  <text x="210" y="530" text-anchor="middle" font-family="JetBrains Mono" font-weight="500" font-size="19" letter-spacing="2" fill="#2A4B8D" transform="rotate(-3 210 523)">BROWSE THE SHELF</text>
+
+  <text x="1096" y="548" text-anchor="end" font-family="JetBrains Mono" font-size="18" letter-spacing="1" fill="#84806F">158.1 &#8226; DEWEY-SORTED</text>
+</svg>
