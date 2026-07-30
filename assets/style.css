@@ -383,7 +383,7 @@ a.ra-title:hover{text-decoration:underline;}
 
 .shelf-grid{
   display:grid;
-  grid-template-columns:repeat(2,1fr);
+  grid-template-columns:repeat(auto-fill, minmax(260px, 1fr));
   gap:16px;
 }
 .shelf-tile{
@@ -449,6 +449,33 @@ a.ra-title:hover{text-decoration:underline;}
 }
 .shelf-tile.slot-empty:hover{border-color:var(--rule);}
 
+/* homepage: sticky jump nav between categories */
+.shelf-jump{
+  position:sticky;
+  top:0;
+  z-index:5;
+  display:flex;
+  gap:8px;
+  padding:14px 0;
+  margin-top:8px;
+  background:var(--paper);
+  border-bottom:1px solid var(--rule);
+}
+.shelf-jump a{
+  font-family:'JetBrains Mono',monospace;
+  font-size:11px;
+  text-transform:uppercase;
+  letter-spacing:0.06em;
+  color:var(--stone);
+  text-decoration:none;
+  border:1px solid var(--rule);
+  border-radius:20px;
+  padding:6px 14px;
+  transition:border-color .15s ease, color .15s ease;
+}
+.shelf-jump a:hover,
+.shelf-jump a.active{border-color:var(--index-blue);color:var(--index-blue);}
+
 /* homepage: Fiction / Non-Fiction category sections */
 .shelf-section{margin-top:40px;}
 .shelf-section:first-of-type{margin-top:0;}
@@ -486,6 +513,18 @@ a.ra-title:hover{text-decoration:underline;}
   letter-spacing:0.06em;
   white-space:nowrap;
 }
+
+/* homepage: progressive tile reveal (infinite-scroll-style, no backend needed) */
+.shelf-tile.tile-hidden{display:none;}
+.shelf-tile.tile-reveal{animation:tileIn .4s ease both;}
+@keyframes tileIn{
+  from{opacity:0; transform:translateY(10px);}
+  to{opacity:1; transform:translateY(0);}
+}
+@media (prefers-reduced-motion: reduce){
+  .shelf-tile.tile-reveal{animation:none;}
+}
+.shelf-sentinel{grid-column:1/-1; height:1px;}
 
 /* fiction booktalk pages: series box (omitted entirely for standalone/non-series fiction and all non-fiction) */
 .series-box{
